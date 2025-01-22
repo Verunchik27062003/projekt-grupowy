@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Add Review - BookReview{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="display-4 text-primary">Add Review</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="mt-4">
+        {% csrf_token %}
+
+
+
+        <!-- Review Fields -->
+        <div class="mb-3">
+            <label for="id_rating" class="form-label">Rating</label>
+            {{ form.rating }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_content" class="form-label">Review Content</label>
+            {{ form.content }}
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success">Submit Review</button>
+    </form>
+
+    <div class="mt-4">
+        <a href="{% url 'book_list' %}" class="btn btn-secondary">Back to Books List</a>
+    </div>
+</div>
+{% endblock %}

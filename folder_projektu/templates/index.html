@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to BookReview{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center">
+        <h1 class="display-4 text-primary">Welcome to BookReview</h1>
+        <p class="lead text-secondary">Your go-to platform for sharing and discovering book reviews.</p>
+    </div>
+</div>
+
+<div class="container text-center mt-5">
+    <h2 class="text-primary">Discover Our Recommendations:</h2>
+</div>
+
+<!-- Carousel -->
+<div class="container py-5">
+
+    <div id="simpleCarousel" class="carousel slide mx-auto" data-bs-ride="carousel" style="max-width: 400px;">
+        <div class="carousel-inner" style="aspect-ratio: 2 / 3;">
+            {% if recommended_books %}
+    {% for book in recommended_books %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <a href="{% url 'book_detail' book.id %}">
+                <img src="{{ book.cover_image.url }}" class="d-block w-100 carousel-img" alt="{{ book.title }}">
+                <p>Image URL: {{ book.cover_image.url }}</p> <!-- This will print the URL -->
+            </a>
+            <div class="carousel-caption">
+                <h5>{{ book.title }}</h5>
+                <p>{{ book.author.name }} - {{ book.genre }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No recommendations available at the moment.</p>
+{% endif %}
+        </div>
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#simpleCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#simpleCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<style>
+    /* Adjust the image to fit within the taller container */
+    .carousel-img {
+        height: 100%; /* Make the image fill the container's height */
+        object-fit: contain; /* Ensure the full image is visible */
+    }
+    .carousel-inner {
+        border-radius: 10px; /* Optional: Add rounded corners for a polished look */
+        overflow: hidden; /* Ensures images don't spill out of the container */
+        background-color: #f8f9fa; /* Light background for better contrast */
+    }
+</style>
+{% endblock %}

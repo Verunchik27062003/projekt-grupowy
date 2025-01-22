@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Books List - BookReview{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-primary">Books List</h1>
+    </div>
+
+    <ol class="list-group list-group-numbered">
+        {% for book in books %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <!-- Book Details -->
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">
+                        <a href="{% url 'book_detail' book.pk %}" class="text-decoration-none">{{ book.title }}</a>
+                    </div>
+                    by
+                    <a href="{% url 'author_detail' book.author.pk %}" class="text-decoration-none">
+                        {{ book.author.name }}
+                    </a>
+                </div>
+
+                <!-- Book Info -->
+                <div class="text-end">
+                    <!-- Average Rating -->
+                    {% if book.avg_rating %}
+                        <span class="badge bg-success rounded-pill">
+                            {{ book.avg_rating|floatformat:1 }}/5
+                        </span>
+                    {% else %}
+                        <span class="badge bg-secondary rounded-pill">No ratings</span>
+                    {% endif %}
+
+                    <!-- Genre -->
+                    <span class="badge bg-primary rounded-pill">{{ book.genre }}</span>
+                </div>
+            </li>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock %}

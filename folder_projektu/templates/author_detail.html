@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ author.name }} - BookReview{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Author Details -->
+    <div class="bg-white shadow-sm p-4 rounded">
+        <h1 class="display-5 text-primary text-center">{{ author.name }}</h1>
+        <p class="text-muted">
+            <strong>Nationality:</strong> {{ author.nationality }}
+        </p>
+        <div class="text-muted">
+            <strong>Born on:</strong> {{ author.birth_date }}
+        </div>
+    </div>
+
+    <!-- Books by the Author -->
+    <div class="mt-5">
+        <h2 class="text-secondary mb-4 text-center">Author's books</h2>
+        {% if books %}
+            <ul class="list-group">
+                {% for book in books %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <a href="{% url 'book_detail' book.pk %}" class="text-decoration-none text-primary">
+                                <strong>{{ book.title }}</strong>
+                            </a>
+                            <span class="text-muted">({{ book.genre }})</span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted text-center">No books available for this author.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

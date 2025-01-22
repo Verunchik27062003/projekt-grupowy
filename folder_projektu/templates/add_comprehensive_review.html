@@ -1,0 +1,85 @@
+
+{% extends "base.html" %}
+
+{% block title %}Add Review - BookReview{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <h2 class="display-4 text-primary">Add Review</h2>
+
+        <form method="POST" enctype="multipart/form-data" class="mt-4">
+            {% csrf_token %}
+            <!-- Book Selection -->
+            <div class="mb-3">
+                <label for="id_book" class="form-label">Existing Book</label>
+                {{ form.book }}
+                <div id="existing-book-section">
+                    {% if form.book.value %}
+                        <!-- Existing book fields will show if selected -->
+                    {% endif %}
+                </div>
+
+                <div id="new-book-section">
+                    <label for="id_new_book_title" class="form-label">New Book Title</label>
+                    {{ form.new_book_title }}
+                    <label for="id_genre" class="form-label">Genre</label>
+                    {{ form.genre }}
+                    <label for="id_release_date" class="form-label">Release Date</label>
+                    {{ form.release_date }}
+                </div>
+            </div>
+
+            <!-- Author Selection -->
+            <div class="mb-3">
+                <label for="id_author" class="form-label">Existing Author</label>
+                {{ form.author }}
+
+                <div id="existing-author-section">
+                    {% if form.author.value %}
+                        <!-- Existing author fields will show if selected -->
+                    {% endif %}
+                </div>
+
+                <div id="new-author-section">
+                    <label for="id_new_author_name" class="form-label">New Author Name</label>
+                    {{ form.new_author_name }}
+                    <label for="id_nationality" class="form-label">Nationality</label>
+                    {{ form.nationality }}
+                    <label for="id_birth_date" class="form-label">Birth Date</label>
+                    {{ form.birth_date }}
+                </div>
+            </div>
+
+            <!-- Review Fields -->
+            <div class="mb-3">
+                <label for="id_rating" class="form-label">Rating</label>
+                {{ form.rating }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_content" class="form-label">Review Content</label>
+                {{ form.content }}
+            </div>
+{% comment %}                 {% if form.content.errors %}
+                    <div class="text-danger">
+                        {% for error in form.content.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %} {% endcomment %}
+            <div class="mb-3">
+                <label for="id_cover_image" class="form-label">Book Cover</label>
+                {{ form.cover_image }}
+            </div>
+            <div class="mb-3">
+            </div>
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-success">Submit Review</button>
+        </form>
+
+        <div class="mt-4">
+            <a href="{% url 'book_list' %}" class="btn btn-secondary">Back to Books List</a>
+        </div>
+    </div>
+{% endblock %}
+

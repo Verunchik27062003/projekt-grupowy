@@ -1,0 +1,115 @@
+[
+    {
+        "model": "bookreview.author",
+        "pk": 1,
+        "fields": {
+            "name": "J.K. Rowling",
+            "birth_date": "1965-07-31",
+            "nationality": "British"
+        }
+    },
+    {
+        "model": "bookreview.book",
+        "pk": 1,
+        "fields": {
+            "title": "Harry Potter and the Philosopher's Stone",
+            "genre": "Fantasy",
+            "release_date": "1997-06-26",
+            "author": 1,
+            "cover_image": "book_covers/Philosopher_Stone.jpg"
+        }
+    },
+    {
+        "model": "bookreview.book",
+        "pk": 2,
+        "fields": {
+            "title": "Harry Potter and the Chamber of Secrets",
+            "genre": "Fantasy",
+            "release_date": "1998-07-02",
+            "author": 1,
+            "cover_image": "book_covers/Chamber_of_Secretes.jpg"
+        }
+    },
+    {
+        "model": "bookreview.author",
+        "pk": 2,
+        "fields": {
+            "name": "George Orwell",
+            "birth_date": "1903-06-25",
+            "nationality": "British"
+        }
+    },
+    {
+        "model": "bookreview.book",
+        "pk": 3,
+        "fields": {
+            "title": "1984",
+            "genre": "Dystopian",
+            "release_date": "1949-06-08",
+            "author": 2,
+            "cover_image": "book_covers/1984.jpg"
+        }
+    },
+    {
+        "model": "bookreview.book",
+        "pk": 4,
+        "fields": {
+            "title": "Animal Farm",
+            "genre": "Political satire",
+            "release_date": "1945-08-17",
+            "author": 2,
+            "cover_image": "book_covers/Animal_Farm.jpg"
+        }
+    },
+    {
+        "model": "bookreview.author",
+        "pk": 3,
+        "fields": {
+            "name": "Jane Austen",
+            "birth_date": "1775-12-16",
+            "nationality": "British"
+        }
+    },
+    {
+        "model": "bookreview.book",
+        "pk": 5,
+        "fields": {
+            "title": "Pride and Prejudice",
+            "genre": "Romance",
+            "release_date": "1813-01-28",
+            "author": 3,
+            "cover_image": "book_covers/Pride_and_Prejudice.jpg"
+        }
+    },
+    {
+        "model": "bookreview.book",
+        "pk": 6,
+        "fields": {
+            "title": "Sense and Sensibility",
+            "genre": "Romance",
+            "release_date": "1811-10-30",
+            "author": 3,
+            "cover_image": "book_covers/Sense_and_Sensibility.jpg"
+        }
+    },
+	{
+        "model": "bookreview.author",
+        "pk": 3,
+        "fields": {
+            "name": "Leo Tolstoy",
+            "birth_date": "1828-09-09",
+            "nationality": "Russian"
+        }
+    },
+    {
+        "model": "bookreview.book",
+        "pk": 7,
+        "fields": {
+            "title": "War and Peace",
+            "genre": "Historical Fiction",
+            "release_date": "1869-01-01",
+            "author": 3,
+            "cover_image": "book_covers/War_and_Peace.jpg"
+        }
+    }
+]

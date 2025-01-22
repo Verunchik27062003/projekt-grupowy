@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ book.title }} - BookReview{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="display-4 text-primary">{{ book.title }}</h1>
+
+    <!-- Book Cover -->
+    {% if book.cover_image %}
+        <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="img-fluid rounded mb-4" style="max-width: 300px;">
+    {% else %}
+        <p class="text-muted">No image available for this book.</p>
+    {% endif %}
+
+    <!-- Book Details -->
+    <p><strong>Genre:</strong> {{ book.genre }}</p>
+    <p><strong>Release Date:</strong> {{ book.release_date }}</p>
+    <p><strong>Author:</strong>
+        <a href="{% url 'author_detail' book.author.pk %}" class="text-decoration-none text-primary">
+            {{ book.author.name }}
+        </a>
+    </p>
+
+    <!-- Average Rating -->
+    <p><strong>Average Rating:</strong>
+        {% if avg_rating %}
+            {{ avg_rating|floatformat:1 }}/5
+        {% else %}
+            No ratings yet
+        {% endif %}
+    </p>
+
+    <!-- Delete Button for Admins -->
+        {% if user.is_superuser %}
+            <form method="POST" action="{% url 'book_delete' book.pk %}" onsubmit="return confirm('Are you sure you want to delete this book?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-danger">
+                    <i class="bi bi-trash"></i> Delete Book
+                </button>
+            </form>
+        {% endif %}
+    <!-- Add Review Button -->
+    <a href="{% url 'add_review' book.id %}" class="btn btn-primary mt-3">Add Review</a>
+
+    <!-- Reviews Section -->
+    <h2 class="mt-5">Reviews</h2>
+    {% if reviews %}
+        <ul class="list-unstyled">
+            {% for review in reviews %}
+                <li class="mb-4">
+                    <strong>{{ review.user.username }}</strong>
+                    <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+                    <p><strong>Review:</strong> {{ review.content }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reviews available for this book.</p>
+    {% endif %}
+</div>
+{% endblock %}
